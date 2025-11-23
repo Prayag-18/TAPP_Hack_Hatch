@@ -160,7 +160,7 @@ const Projects = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Goal Amount ($)</label>
+                  <label className="block text-sm font-medium mb-2">Goal Amount (₹)</label>
                   <Input
                     type="number"
                     value={formData.goal_amount}
@@ -171,7 +171,7 @@ const Projects = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Min Investment ($)</label>
+                  <label className="block text-sm font-medium mb-2">Min Investment (₹)</label>
                   <Input
                     type="number"
                     value={formData.min_investment}
@@ -234,7 +234,7 @@ const Projects = () => {
                     <div className="grid grid-cols-2 gap-2 text-sm mb-3">
                       <div className="flex items-center gap-1">
                         <DollarSign size={14} className="text-primary" />
-                        ${project.total_invested.toLocaleString()} / ${project.goal_amount.toLocaleString()}
+                        ₹{project.total_invested.toLocaleString()} / ₹{project.goal_amount.toLocaleString()}
                       </div>
                       <div className="flex items-center gap-1">
                         📊 {project.projected_roi}% ROI
@@ -269,7 +269,7 @@ const Projects = () => {
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <p className="font-medium text-lg">{project.title}</p>
-                        <p className="text-sm text-muted-foreground">Raised: ${project.total_invested.toLocaleString()}</p>
+                        <p className="text-sm text-muted-foreground">Raised: ₹{project.total_invested.toLocaleString()}</p>
                       </div>
                       <span className="text-xs bg-gray-500/20 text-gray-400 px-3 py-1 rounded-full">
                         Completed

@@ -51,7 +51,7 @@ const MyInvestments = () => {
                             <DollarSign className="text-primary" size={24} />
                             <p className="text-muted-foreground">Total Invested</p>
                         </div>
-                        <p className="text-4xl font-light">${stats.totalInvested.toLocaleString()}</p>
+                        <p className="text-4xl font-light">₹{stats.totalInvested.toLocaleString()}</p>
                     </div>
 
                     <div className="glass rounded-xl p-6">
@@ -67,7 +67,7 @@ const MyInvestments = () => {
                             <TrendingUp className="text-green-400" size={24} />
                             <p className="text-muted-foreground">Total Returns</p>
                         </div>
-                        <p className="text-4xl font-light text-green-400">${stats.totalReturns.toLocaleString()}</p>
+                        <p className="text-4xl font-light text-green-400">₹{stats.totalReturns.toLocaleString()}</p>
                     </div>
                 </div>
 
@@ -98,8 +98,8 @@ const MyInvestments = () => {
                                         </p>
                                     </div>
                                     <span className={`px-3 py-1 rounded-full text-xs ${investment.status === 'ACTIVE' ? 'bg-green-500/20 text-green-400' :
-                                            investment.status === 'COMPLETED' ? 'bg-blue-500/20 text-blue-400' :
-                                                'bg-gray-500/20 text-gray-400'
+                                        investment.status === 'COMPLETED' ? 'bg-blue-500/20 text-blue-400' :
+                                            'bg-gray-500/20 text-gray-400'
                                         }`}>
                                         {investment.status}
                                     </span>
@@ -108,20 +108,20 @@ const MyInvestments = () => {
                                 <div className="grid md:grid-cols-4 gap-4">
                                     <div className="bg-muted/50 rounded-lg p-3">
                                         <p className="text-xs text-muted-foreground mb-1">Amount Invested</p>
-                                        <p className="text-lg font-medium">${investment.amount.toLocaleString()}</p>
+                                        <p className="text-lg font-medium">₹{investment.amount.toLocaleString()}</p>
                                     </div>
 
                                     <div className="bg-muted/50 rounded-lg p-3">
                                         <p className="text-xs text-muted-foreground mb-1">Expected Return</p>
                                         <p className="text-lg font-medium text-green-400">
-                                            ${investment.expected_return?.toLocaleString() || 'TBD'}
+                                            ₹{investment.expected_return?.toLocaleString() || 'TBD'}
                                         </p>
                                     </div>
 
                                     <div className="bg-muted/50 rounded-lg p-3">
                                         <p className="text-xs text-muted-foreground mb-1">Actual Return</p>
                                         <p className="text-lg font-medium">
-                                            {investment.actual_return ? `$${investment.actual_return.toLocaleString()}` : 'Pending'}
+                                            {investment.actual_return ? `₹${investment.actual_return.toLocaleString()}` : 'Pending'}
                                         </p>
                                     </div>
 

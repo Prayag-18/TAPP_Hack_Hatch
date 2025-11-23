@@ -13,7 +13,9 @@ class CreatorProfile(BaseModel):
     # Analytics fields
     total_videos: int = 0
     total_views: int = 0
+    total_views: int = 0
     subscribers: int = 0
+    ad_revenue: float = 0
     avg_views_per_video: float = 0
     engagement_rate: float = 0
     subscriber_growth_rate: float = 0

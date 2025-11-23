@@ -10,12 +10,15 @@ class CreatorService:
         """Generate realistic analytics for creators"""
         subscribers = random.randint(1000, 500000)
         total_videos = random.randint(10, 500)
+        total_videos = random.randint(10, 500)
         total_views = subscribers * random.randint(50, 200)
+        ad_revenue = round(total_views * random.uniform(0.001, 0.005), 2)
         
         return {
             "subscribers": subscribers,
             "total_videos": total_videos,
             "total_views": total_views,
+            "ad_revenue": ad_revenue,
             "avg_views_per_video": round(total_views / total_videos, 2),
             "engagement_rate": round(random.uniform(2.5, 8.5), 2),
             "subscriber_growth_rate": round(random.uniform(-5, 25), 2),
@@ -53,6 +56,18 @@ class CreatorService:
                 {"$set": analytics}
             )
             creator.update(analytics)
+        elif not creator.get("ad_revenue"):
+            # Backfill ad_revenue if missing
+            total_views = creator.get("total_views", 0)
+            ad_revenue = round(total_views * random.uniform(0.001, 0.005), 2)
+            if ad_revenue == 0 and total_views > 0:
+                 ad_revenue = round(total_views * 0.003, 2) # Fallback
+            
+            await db.creators.update_one(
+                {"_id": creator_id},
+                {"$set": {"ad_revenue": ad_revenue}}
+            )
+            creator["ad_revenue"] = ad_revenue
         
         return creator
 
@@ -68,6 +83,18 @@ class CreatorService:
                 {"$set": analytics}
             )
             creator.update(analytics)
+        elif creator and not creator.get("ad_revenue"):
+             # Backfill ad_revenue if missing
+            total_views = creator.get("total_views", 0)
+            ad_revenue = round(total_views * random.uniform(0.001, 0.005), 2)
+            if ad_revenue == 0 and total_views > 0:
+                 ad_revenue = round(total_views * 0.003, 2) # Fallback
+
+            await db.creators.update_one(
+                {"_id": creator["_id"]},
+                {"$set": {"ad_revenue": ad_revenue}}
+            )
+            creator["ad_revenue"] = ad_revenue
         
         return creator
 
@@ -106,6 +133,9 @@ class CreatorService:
                 "subscribers": creator.get("subscribers", 0),
                 "total_videos": creator.get("total_videos", 0),
                 "total_views": creator.get("total_views", 0),
+                "total_videos": creator.get("total_videos", 0),
+                "total_views": creator.get("total_views", 0),
+                "ad_revenue": creator.get("ad_revenue", 0),
                 "avg_views_per_video": creator.get("avg_views_per_video", 0)
             },
             "engagement": {

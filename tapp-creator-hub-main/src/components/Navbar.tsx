@@ -1,10 +1,20 @@
 import { useState } from 'react';
 import { NavLink } from '@/components/NavLink';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
 import tappLogo from '@/assets/tapp-logo.png';
+import { useAuth } from '@/hooks/useAPI';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
 
   const navLinks = [
     { to: '/community', label: 'Community' },
@@ -35,6 +45,17 @@ const Navbar = () => {
                 {link.label}
               </NavLink>
             ))}
+            {isAuthenticated && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleLogout}
+                className="text-foreground/70 hover:text-foreground hover:bg-transparent"
+              >
+                <LogOut size={18} className="mr-2" />
+                Sign Out
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -60,6 +81,18 @@ const Navbar = () => {
                 {link.label}
               </NavLink>
             ))}
+            {isAuthenticated && (
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false);
+                }}
+                className="w-full text-left py-2 text-foreground/70 hover:text-foreground transition-colors flex items-center"
+              >
+                <LogOut size={18} className="mr-2" />
+                Sign Out
+              </button>
+            )}
           </div>
         )}
       </div>

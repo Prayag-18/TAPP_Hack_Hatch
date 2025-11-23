@@ -41,7 +41,7 @@ const BrowseProjects = () => {
 
         const amount = parseFloat(investAmount);
         if (amount < selectedProject.min_investment) {
-            alert(`Minimum investment is $${selectedProject.min_investment}`);
+            alert(`Minimum investment is ₹${selectedProject.min_investment}`);
             return;
         }
 
@@ -145,7 +145,7 @@ const BrowseProjects = () => {
                                 {/* Progress */}
                                 <div className="mb-4">
                                     <div className="flex justify-between text-sm mb-2">
-                                        <span>${project.total_invested?.toLocaleString() || 0} raised</span>
+                                        <span>₹{project.total_invested?.toLocaleString() || 0} raised</span>
                                         <span className="text-muted-foreground">{project.funding_percentage || 0}%</span>
                                     </div>
                                     <div className="w-full bg-muted/50 rounded-full h-2">
@@ -155,7 +155,7 @@ const BrowseProjects = () => {
                                         ></div>
                                     </div>
                                     <p className="text-xs text-muted-foreground mt-1">
-                                        Goal: ${project.goal_amount?.toLocaleString()}
+                                        Goal: ₹{project.goal_amount?.toLocaleString()}
                                     </p>
                                 </div>
 
@@ -163,7 +163,7 @@ const BrowseProjects = () => {
                                 <div className="grid grid-cols-2 gap-2 mb-4 text-sm">
                                     <div className="bg-muted/50 rounded-lg p-2">
                                         <p className="text-muted-foreground text-xs">Min Investment</p>
-                                        <p className="font-medium">${project.min_investment}</p>
+                                        <p className="font-medium">₹{project.min_investment}</p>
                                     </div>
                                     <div className="bg-muted/50 rounded-lg p-2">
                                         <p className="text-muted-foreground text-xs">Projected ROI</p>
@@ -195,15 +195,15 @@ const BrowseProjects = () => {
 
                             <div className="mb-6">
                                 <p className="text-sm text-muted-foreground mb-2">
-                                    Min: ${selectedProject.min_investment} • Projected ROI: {selectedProject.projected_roi}%
+                                    Min: ₹{selectedProject.min_investment} • Projected ROI: {selectedProject.projected_roi}%
                                 </p>
 
-                                <label className="block text-sm font-medium mb-2">Investment Amount ($)</label>
+                                <label className="block text-sm font-medium mb-2">Investment Amount (₹)</label>
                                 <Input
                                     type="number"
                                     value={investAmount}
                                     onChange={(e) => setInvestAmount(e.target.value)}
-                                    placeholder={`Min $${selectedProject.min_investment}`}
+                                    placeholder={`Min ₹${selectedProject.min_investment}`}
                                     className="bg-muted/50 border-border"
                                 />
 
@@ -211,7 +211,7 @@ const BrowseProjects = () => {
                                     <div className="mt-4 bg-muted/50 rounded-lg p-4">
                                         <p className="text-sm text-muted-foreground mb-1">Expected Return</p>
                                         <p className="text-2xl font-light text-green-400">
-                                            ${(parseFloat(investAmount) * (1 + selectedProject.projected_roi / 100)).toFixed(2)}
+                                            ₹{(parseFloat(investAmount) * (1 + selectedProject.projected_roi / 100)).toFixed(2)}
                                         </p>
                                         <p className="text-xs text-muted-foreground mt-1">
                                             Based on {selectedProject.projected_roi}% ROI

@@ -124,7 +124,7 @@ const Index = () => {
               <p className="text-muted-foreground">Active Creators</p>
             </div>
             <div>
-              <p className="text-5xl font-light text-secondary mb-2">$2M+</p>
+              <p className="text-5xl font-light text-secondary mb-2">₹2M+</p>
               <p className="text-muted-foreground">Projects Funded</p>
             </div>
             <div>

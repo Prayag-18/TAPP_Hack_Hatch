@@ -42,7 +42,7 @@ const Profile = () => {
 
       if (!creatorId) {
         setIsOwnProfile(true);
-        const creator = await apiClient.request('/creators/me');
+        const creator: any = await apiClient.getMyCreatorProfile();
         setProfile(creator);
         setFormData({
           display_name: creator.display_name || '',
@@ -57,6 +57,23 @@ const Profile = () => {
       }
     } catch (err) {
       console.error('Failed to load profile:', err);
+      // If it's own profile and failed (likely 404), allow creating one
+      if (!creatorId) {
+        setIsOwnProfile(true);
+        setProfile({
+          display_name: user?.email?.split('@')[0] || 'New Creator',
+          bio: '',
+          primary_genre: '',
+          region: '',
+        });
+        setFormData({
+          display_name: user?.email?.split('@')[0] || 'New Creator',
+          bio: '',
+          primary_genre: '',
+          region: '',
+        });
+        setEditMode(true);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +84,7 @@ const Profile = () => {
       let targetCreatorId = creatorId;
 
       if (!targetCreatorId) {
-        const creator = await apiClient.request('/creators/me');
+        const creator: any = await apiClient.getMyCreatorProfile();
         targetCreatorId = creator._id;
       }
 
@@ -84,7 +101,7 @@ const Profile = () => {
         p.status === 'COMPLETED'
       ).length;
 
-      const allInvestments = await apiClient.getMyInvestments();
+      const allInvestments: any = await apiClient.getMyInvestments();
       const projectIds = creatorProjects.map((p: any) => p._id);
       const creatorInvestments = Array.isArray(allInvestments)
         ? allInvestments.filter((inv: any) => projectIds.includes(inv.project_id))
@@ -246,7 +263,7 @@ const Profile = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-muted/50 rounded-lg p-4">
                     <p className="text-muted-foreground text-sm mb-1">Total Revenue</p>
-                    <p className="text-3xl font-light text-primary">${stats.totalRevenue.toLocaleString()}</p>
+                    <p className="text-3xl font-light text-primary">₹{stats.totalRevenue.toLocaleString()}</p>
                   </div>
                   <div className="bg-muted/50 rounded-lg p-4">
                     <p className="text-muted-foreground text-sm mb-1">Active Projects</p>
@@ -296,9 +313,9 @@ const Profile = () => {
                 <div className="bg-muted/50 rounded-lg p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingUp className="text-green-400" size={20} />
-                    <p className="text-sm text-muted-foreground">Avg Views/Video</p>
+                    <p className="text-sm text-muted-foreground">Ad Revenue</p>
                   </div>
-                  <p className="text-3xl font-light">{Math.round(profile.avg_views_per_video || 0).toLocaleString()}</p>
+                  <p className="text-3xl font-light">₹{profile.ad_revenue?.toLocaleString() || 0}</p>
                 </div>
               </div>
             </div>

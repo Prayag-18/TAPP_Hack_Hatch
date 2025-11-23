@@ -58,27 +58,24 @@ const Payment = () => {
                 <div className="grid grid-cols-3 gap-4 mb-6">
                   <button
                     onClick={() => setPaymentMethod('card')}
-                    className={`glass rounded-lg p-4 flex flex-col items-center gap-2 transition-all ${
-                      paymentMethod === 'card' ? 'ring-2 ring-primary' : ''
-                    }`}
+                    className={`glass rounded-lg p-4 flex flex-col items-center gap-2 transition-all ${paymentMethod === 'card' ? 'ring-2 ring-primary' : ''
+                      }`}
                   >
                     <CreditCard size={24} />
                     <span className="text-sm">Credit Card</span>
                   </button>
                   <button
                     onClick={() => setPaymentMethod('paypal')}
-                    className={`glass rounded-lg p-4 flex flex-col items-center gap-2 transition-all ${
-                      paymentMethod === 'paypal' ? 'ring-2 ring-primary' : ''
-                    }`}
+                    className={`glass rounded-lg p-4 flex flex-col items-center gap-2 transition-all ${paymentMethod === 'paypal' ? 'ring-2 ring-primary' : ''
+                      }`}
                   >
                     <Wallet size={24} />
                     <span className="text-sm">PayPal</span>
                   </button>
                   <button
                     onClick={() => setPaymentMethod('bank')}
-                    className={`glass rounded-lg p-4 flex flex-col items-center gap-2 transition-all ${
-                      paymentMethod === 'bank' ? 'ring-2 ring-primary' : ''
-                    }`}
+                    className={`glass rounded-lg p-4 flex flex-col items-center gap-2 transition-all ${paymentMethod === 'bank' ? 'ring-2 ring-primary' : ''
+                      }`}
                   >
                     <Building2 size={24} />
                     <span className="text-sm">Bank Transfer</span>
@@ -106,22 +103,22 @@ const Payment = () => {
 
                     <div className="space-y-4">
                       <h3 className="text-lg font-light">Or Enter New Card</h3>
-                      <Input 
-                        placeholder="Card Number" 
+                      <Input
+                        placeholder="Card Number"
                         className="neo-button"
                       />
                       <div className="grid grid-cols-2 gap-4">
-                        <Input 
-                          placeholder="MM/YY" 
+                        <Input
+                          placeholder="MM/YY"
                           className="neo-button"
                         />
-                        <Input 
-                          placeholder="CVC" 
+                        <Input
+                          placeholder="CVC"
                           className="neo-button"
                         />
                       </div>
-                      <Input 
-                        placeholder="Cardholder Name" 
+                      <Input
+                        placeholder="Cardholder Name"
                         className="neo-button"
                       />
                     </div>
@@ -135,13 +132,13 @@ const Payment = () => {
               <div className="flex items-center gap-2 mb-6">
                 <img src={tappLogo} alt="TAPP" className="h-6" />
               </div>
-              
+
               <h2 className="text-xl font-light mb-4">Order Summary</h2>
-              
+
               <div className="space-y-3 mb-6 pb-6 border-b border-border">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Project Membership</span>
-                  <span>$249.00</span>
+                  <span>₹249.00</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Date</span>
@@ -149,16 +146,16 @@ const Payment = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Processing Fee</span>
-                  <span>$9.00</span>
+                  <span>₹9.00</span>
                 </div>
               </div>
-              
+
               <div className="flex justify-between text-2xl font-light mb-6">
                 <span>Total</span>
-                <span className="text-primary">$258.00</span>
+                <span className="text-primary">₹258.00</span>
               </div>
-              
-              <Button 
+
+              <Button
                 className="w-full neo-button h-12 text-lg"
                 onClick={handlePayment}
               >
@@ -176,7 +173,7 @@ const Payment = () => {
               <p className="text-xl text-muted-foreground mb-8">
                 Your membership has been activated. Welcome to TAPP Premium!
               </p>
-              <Button 
+              <Button
                 className="neo-button px-8"
                 onClick={() => window.location.href = '/'}
               >

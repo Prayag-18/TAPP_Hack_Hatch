@@ -41,3 +41,7 @@ async def login(user: UserLogin):
 @router.get("/me", response_model=UserResponse)
 async def read_users_me(current_user: dict = Depends(get_current_user)):
     return current_user
+
+@router.post("/refresh", response_model=Token)
+async def refresh_token(refresh_token: str):
+    return await auth_service.refresh_token(refresh_token)

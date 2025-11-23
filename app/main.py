@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI # Trigger reload
 from app.config.settings import settings
 from app.db.mongo import db
 from app.auth.routes import router as auth_router
