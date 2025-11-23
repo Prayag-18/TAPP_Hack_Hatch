@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 240 20% 4%;
+    --foreground: 210 100% 98%;
+
+    --card: 240 15% 8%;
+    --card-foreground: 210 100% 98%;
+
+    --popover: 240 15% 8%;
+    --popover-foreground: 210 100% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 100% 98%;
+
+    --secondary: 271 81% 56%;
+    --secondary-foreground: 210 100% 98%;
+
+    --muted: 240 10% 15%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 280 89% 60%;
+    --accent-foreground: 210 100% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 100% 98%;
+
+    --border: 240 10% 18%;
+    --input: 240 10% 18%;
+    --ring: 217 91% 60%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 240 15% 6%;
+    --sidebar-foreground: 240 5% 85%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 210 100% 98%;
+    --sidebar-accent: 240 10% 15%;
+    --sidebar-accent-foreground: 240 5% 85%;
+    --sidebar-border: 240 10% 18%;
+    --sidebar-ring: 217 91% 60%;
+
+    --neon-blue: 197 100% 50%;
+    --neon-violet: 271 81% 56%;
+    --neon-pink: 330 81% 60%;
+    --neon-cyan: 180 100% 50%;
+
+    --glass-bg: 240 15% 8%;
+    --glass-border: 210 50% 85%;
+
+    --glow-blue: 217 91% 60%;
+    --glow-violet: 271 81% 56%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(271 81% 56%));
+    --gradient-glow: linear-gradient(180deg, hsl(240 20% 4%), hsl(240 15% 6%));
+  }
+
+  .dark {
+    --background: 240 20% 4%;
+    --foreground: 210 100% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-light tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-glass-bg/40 backdrop-blur-xl border border-glass-border/20;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 30px hsl(var(--glow-blue) / 0.5);
+  }
+
+  .glow-violet {
+    box-shadow: 0 0 30px hsl(var(--glow-violet) / 0.5);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--neon-blue) / 0.8);
+  }
+
+  .neo-button {
+    @apply relative overflow-hidden bg-primary/20 backdrop-blur-sm border border-primary/50;
+    box-shadow: inset 0 0 20px hsl(var(--primary) / 0.3), 0 0 20px hsl(var(--primary) / 0.4);
+  }
+
+  .neo-button:hover {
+    box-shadow: inset 0 0 30px hsl(var(--primary) / 0.5), 0 0 30px hsl(var(--primary) / 0.6);
+  }
+}
